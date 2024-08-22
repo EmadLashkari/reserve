@@ -7,6 +7,8 @@ import { chromium } from "playwright";
     ignoreHTTPSErrors: false,
   });
   const page = await context.newPage();
+  await page.route("**/*.{png,jpg,jpeg,gif,svg}", (route) => route.abort());
+  await page.route("**/*.css", (route) => route.abort());
 
   console.time("start");
   await page.goto("https://110129.samanpl.ir/");
@@ -21,7 +23,7 @@ import { chromium } from "playwright";
   console.log("login");
   await page.click("#ReserveButton");
   const page1Promise = page.waitForEvent("popup");
-  await page.getByRole("link", { name: "   رزرو" }).click();
+  await page.getByRole("link", { name: "رزرو" }).click();
   const page1 = await page1Promise;
   await page1.getByRole("textbox", { name: "date" }).click();
   await page1.click(`td[data-number="${14030601}"]`);
