@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 (async () => {
   // Launch the browser
-  const browser = await chromium.launch({ headless: false }); // Set headless: true to run without UI
+  const browser = await chromium.launch({ headless: true }); // Set headless: true to run without UI
   const context = await browser.newContext({
     ignoreHTTPSErrors: false,
   });
