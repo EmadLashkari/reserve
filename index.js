@@ -13,7 +13,9 @@ import { chromium } from "playwright";
   console.time("start");
   await page.goto("https://110129.samanpl.ir/");
   console.log("navigate to site");
-  await page.waitForSelector("li[data-original-title='ورود']");
+  await page.waitForSelector("li[data-original-title='ورود']", {
+    timeout: 600000,
+  });
   await page.click("li[data-original-title='ورود']");
   await page.getByPlaceholder("نام کاربری").click();
   await page.getByPlaceholder("نام کاربری").fill("0928372294");
@@ -23,7 +25,7 @@ import { chromium } from "playwright";
   await page.getByRole("button", { name: " ورود" }).click();
   console.log("login");
   await page.click("#ReserveButton");
-  const page1Promise = page.waitForEvent("popup");
+  const page1Promise = page.waitForEvent("popup", { timeout: 600000 });
   await page.getByRole("link", { name: "رزرو" }).click();
   console.log("reserve clicked");
   const page1 = await page1Promise;
