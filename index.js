@@ -4,7 +4,7 @@ import { chromium } from "playwright";
   // Launch the browser
   const browser = await chromium.launch({ headless: true }); // Set headless: true to run without UI
   const context = await browser.newContext({
-    ignoreHTTPSErrors: false,
+    ignoreHTTPSErrors: true,
   });
   const page = await context.newPage();
   await page.route("**/*.{png,jpg,jpeg,gif,svg}", (route) => route.abort());
